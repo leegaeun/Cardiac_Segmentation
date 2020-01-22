@@ -11,7 +11,7 @@ Copyright (c) Medical Imaging and Intelligent Reality Lab (MI2RL) in Asan Medica
 All rights reserved.
 
 [TEST_EXAMPLE]
-Preparation.exe ./image.mha ./image_dis1.mha 1
+MajorityVoting.exe ./image_dis0.mha ./image_dis1.mha ./image_dis2.mha ./image_final.mha
 
 =========================================================================*/
 
