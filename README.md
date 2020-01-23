@@ -19,7 +19,7 @@ FCN-all-at-once-VGG16 was proposed as a training model for LV 2D segmentation, a
 ## LV Segmentation
 #### Preparation of Data
 ```DOS.bat
-cmd /c Preparation.exe .data/sample1.mha .data/sample1_disp1.mha 1 0 350
+cmd /c Preparation.exe .data/sample1.mha .data/sample1_displ1.mha 1 0 350
 ```
 Preparation.exe는 12bit gray scale의 volume 영상을 8bit의 RGB로 이루어진 volume영상으로 rescale해주는 실행파일이다. 
 입력값은 입력파일명, 출력파일명, displacement, (+옵션: window level, window width) 를 주면 된다. 아래의 코드는 data 디렉토리에 있는 sample1.mha 영상을 window level 0 HU, window width 350 HU로 windowing하고 각 slice 와 전, 후 slice정보(displacement=1)를 RGB로 merge하여 sample1_displ1.mha 영상으로 출력하는 명령어이다.
@@ -31,5 +31,5 @@ cmd /c Preparation.exe .data/sample1.mha .data/sample1_disp1.mha 1 0 350
 ```
 #### Label fusion with Majority Voting
 ```DOS.bat
-cmd /c MajorityVoting.exe .data/sample1.mha .data/sample1_disp1.mha 1 0 350
+cmd /c MajorityVoting.exe .data/mask1_displ0.mha .data/mask1_displ1.mha .data/mask1_displ2.mha .data/mask1_final.mha
 ```
