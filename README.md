@@ -19,28 +19,17 @@ FCN-all-at-once-VGG16 was proposed as a training model for LV 2D segmentation, a
 ## LV Segmentation
 #### Preparation of Data
 ```DOS.bat
-cmd /c Preparation.exe ./input.mha ./output_disp0.mha 0
+cmd /c Preparation.exe .data/sample1.mha .data/sample1_disp1.mha 1 0 350
 ```
 Preparation.exe는 12bit gray scale의 volume 영상을 8bit의 RGB로 이루어진 volume영상으로 rescale해주는 실행파일이다. 
-입력값은 입력파일명, 출력파일명, displacement를 주면 된다. 아래의 코드는 samples 디렉토리에 있는 sample1.mha파일을 
-Codes for detecting hepatic malignancy with the trained weights are implemented in [*Run_test.ipynb*](./Run_test.ipynb).<br/>
+입력값은 입력파일명, 출력파일명, displacement, (+옵션: window level, window width) 를 주면 된다. 아래의 코드는 data 디렉토리에 있는 sample1.mha 영상을 window level 0 HU, window width 350 HU로 windowing하고 각 slice 와 전, 후 slice정보(displacement=1)를 RGB로 merge하여 sample1_displ1.mha 영상으로 출력하는 명령어이다.
 <br/>
-<p>
-<img src="https://user-images.githubusercontent.com/17020746/68740110-a92fd280-062d-11ea-813f-2659629ae564.png" width="30%">    <img src="https://user-images.githubusercontent.com/17020746/68740198-e09e7f00-062d-11ea-9320-e14bfa929da0.png" width="30%">    <img src="https://user-images.githubusercontent.com/17020746/68740192-de3c2500-062d-11ea-97f3-a9d7d7aca680.png" width="30%">
-</p>
-When the above multiphase CT scan (arterial-, portal venous-, delayed phase from left) is input,<br/>
-malignancy is detected as shown below. White is ground-truth and Red is the predicted detection box.<br/>
 <br/>
-
-<p>
-<img src="https://user-images.githubusercontent.com/17020746/68740581-bc8f6d80-062e-11ea-97dd-16685ad219bf.png" width="50%">
-</p>
-
-<br/>
-
-
-We also prepared [test dataset](./data) so that you can try the detection yourself. All of this data is unused for training and includes hepatic malignancies.<br/>
-Just run after modifying the following two lines in [*Run_test.ipynb*](./Run_test.ipynb) to suit your input path.<br/>
-<pre>imgPath = "./data/img"
-maskPath = "./data/label_gt"<code>
-<br/>
+#### Segmentation with trained weights
+```DOS.bat
+cmd /c Preparation.exe .data/sample1.mha .data/sample1_disp1.mha 1 0 350
+```
+#### Label fusion with Majority Voting
+```DOS.bat
+cmd /c MajorityVoting.exe .data/sample1.mha .data/sample1_disp1.mha 1 0 350
+```
