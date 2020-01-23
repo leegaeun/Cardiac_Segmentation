@@ -3,7 +3,7 @@ Executables for segmenting left ventricle (LV) in cardiac CT images. (ver.1)<br/
 
 
 ## Environments
-caffe <br/>
+Windows 8.1 (64bit), Python 2.7.12, Anaconda 4.1.1, CUDA 7.5, cuDNN 4.0.7, [caffe-windows](https://github.com/BVLC/caffe/tree/windows),  <br/>
 <br/>
 <br/>
 
