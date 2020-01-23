@@ -33,3 +33,7 @@ cmd /c Preparation.exe .data/sample1.mha .data/sample1_disp1.mha 1 0 350
 ```DOS.bat
 cmd /c MajorityVoting.exe .data/mask1_displ0.mha .data/mask1_displ1.mha .data/mask1_displ2.mha .data/mask1_final.mha
 ```
+<br/>
+<br/>
+<br/>
+We also prepared two [sample dataset](./data) so that you can try the segmentation yourself. All of this data is unused for training.<br/>
