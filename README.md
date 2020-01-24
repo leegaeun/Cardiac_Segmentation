@@ -25,7 +25,7 @@ cmd /c Preparation.exe data\sample1.mha data\sample1_dis1.mha 1 150 200
 ```
 
 #### [Step2] Segmentation with trained weights
-Each weights path has *CardiacSegmentation_python_dis*.py*, which performs LV segmentation with trained weights. The inputs are 'file path of the preprocessed image in step1', 'output file path', and 'directory path with weights'. <br/>
+Each weights path has *CardiacSegmentation_python_dis\*.py*, which performs LV segmentation with trained weights. The inputs are 'file path of the preprocessed image in step1', 'output file path', and 'directory path with weights'. <br/>
 The following code is an example of a command to output segmented LV mask file(*data\mask1_dis1.mha*) by inputting *data\sample1_dis1.mha* image.
 ```DOS.bat
 cmd /c python "%cd%\weights\displ1\CardiacSegmentation_python_dis1.py" "%cd%\data\sample1_dis1.mha" "%cd%\data\mask1_dis1.mha" "%cd%\weights\displ1"
