@@ -18,22 +18,22 @@ FCN-all-at-once-VGG16 was proposed as a training model for LV 2D segmentation, a
 
 ## LV Segmentation
 #### [Step1] Preparation of Data
-Preparation.exe is an executable file that rescales 12-bit gray scale volume image to 8-bit RGB volume image. Input can be 'input file path', 'output file path', 'displacement', and 'window level(HU)', 'window width(HU)' options. <br/>
-The following code is a command to output 'data\sample1_dis1.mha' image by merging each slice information (displacement = 1) with RGB after windowing 'data\sample1.mha' image at level 150HU and width 200HU.
+*Preparation.exe* is an executable file that rescales 12-bit gray scale volume image to 8-bit RGB volume image. The inputs are 'input file path', 'output file path', 'displacement', and 'window level(HU)', 'window width(HU)' options. <br/>
+The following code is an example of a command to output 'data\sample1_dis1.mha' image by merging each slice information (displacement = 1) with RGB after windowing 'data\sample1.mha' image at level 150HU and width 200HU.
 ```DOS.bat
 cmd /c Preparation.exe data\sample1.mha data\sample1_dis1.mha 1 150 200
 ```
 
 #### [Step2] Segmentation with trained weights
-각 weights경로에는 CardiacSegmentation_python_dis*.py가 있는데, trained weights로 LV segmentation을 수행한다. 입력값은 step1에서 전처리과정을 끝낸 영상경로, 출력파일경로, weights가 있는 디렉토리경로이다.
-아래의 코드는 data\sample1_dis1.mha 영상을 입력받아 segmented LV mask 파일을 출력하는 명령어 예시이다.
+Each weights path has 'CardiacSegmentation_python_dis*.py', which performs LV segmentation with trained weights. The inputs are 'file path of the preprocessed image in step1', 'output file path', and 'directory path with weights'. <br/>
+The following code is an example of a command to output segmented LV mask file('data\mask1_dis1.mha') by inputting 'data\sample1_dis1.mha' image.
 ```DOS.bat
 cmd /c python "%cd%\weights\displ1\CardiacSegmentation_python_dis1.py" "%cd%\data\sample1_dis1.mha" "%cd%\data\mask1_dis1.mha" "%cd%\weights\displ1"
 ```
 
 #### [Step3] Label fusion with Majority Voting
-MajorityVoting.exe는 step2에서 출력된 각 segmented mask를 Majoirity Voting으로 합쳐 최종 mask를 출력한다. 입력값은 합칠 mask파일경로들과 출력mask경로이다.
-아래의 코드는 displacement=0,1,2에서의 LV mask인 data\mask1_dis0.mha, data\mask1_dis1.mha, data\mask1_dis2.mha 영상을 입력받아 data\mask1_final.mha 파일을 출력하는 명령어 예시이다.
+*MajorityVoting.exe* combines the segmented masks output in [step2] into Majority Voting and outputs the final mask. <br/>
+The following code is an example of outputting a *data\mask1_final.mha* file by fusion of *data\mask1_dis0.mha*, *data\mask1_dis1.mha* and *data\mask1_dis2.mha* images, which are LV masks at displacement=0,1,2.
 ```DOS.bat
 cmd /c MajorityVoting.exe data\mask1_dis0.mha data\mask1_dis1.mha data\mask1_dis2.mha data\mask1_final.mha
 ```
