@@ -18,8 +18,8 @@ FCN-all-at-once-VGG16 was proposed as a training model for LV 2D segmentation, a
 
 ## LV Segmentation
 #### [Step1] Preparation of Data
-Preparation.exe는 12bit gray scale의 volume 영상을 8bit의 RGB로 이루어진 volume영상으로 rescale해주는 실행파일이다. 
-입력값은 입력파일경로, 출력파일경로, displacement, (+옵션: window level, window width) 를 주면 된다. 아래의 코드는 data\sample1.mha 영상을 window level 150 HU, window width 200 HU로 windowing하고 각 slice 와 전, 후 slice정보(displacement=1)를 RGB로 merge하여 data\sample1_dis1.mha 영상으로 출력하는 명령어 예시이다.
+Preparation.exe is an executable file that rescales 12-bit gray scale volume image to 8-bit RGB volume image. Input can be 'input file path', 'output file path', 'displacement', and 'window level(HU)', 'window width(HU)' options. <br/>
+The following code is a command to output 'data\sample1_dis1.mha' image by merging each slice information (displacement = 1) with RGB after windowing 'data\sample1.mha' image at level 150HU and width 200HU.
 ```DOS.bat
 cmd /c Preparation.exe data\sample1.mha data\sample1_dis1.mha 1 150 200
 ```
