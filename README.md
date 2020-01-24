@@ -19,14 +19,14 @@ FCN-all-at-once-VGG16 was proposed as a training model for LV 2D segmentation, a
 ## LV Segmentation
 #### [Step1] Preparation of Data
 *Preparation.exe* is an executable file that rescales 12-bit gray scale volume image to 8-bit RGB volume image. The inputs are 'input file path', 'output file path', 'displacement', and 'window level(HU)', 'window width(HU)' options. <br/>
-The following code is an example of a command to output 'data\sample1_dis1.mha' image by merging each slice information (displacement = 1) with RGB after windowing 'data\sample1.mha' image at level 150HU and width 200HU.
+The following code is an example of a command to output *data\sample1_dis1.mha* image by merging each slice information (displacement = 1) with RGB after windowing *data\sample1.mha* image at level 150HU and width 200HU.
 ```DOS.bat
 cmd /c Preparation.exe data\sample1.mha data\sample1_dis1.mha 1 150 200
 ```
 
 #### [Step2] Segmentation with trained weights
-Each weights path has 'CardiacSegmentation_python_dis*.py', which performs LV segmentation with trained weights. The inputs are 'file path of the preprocessed image in step1', 'output file path', and 'directory path with weights'. <br/>
-The following code is an example of a command to output segmented LV mask file('data\mask1_dis1.mha') by inputting 'data\sample1_dis1.mha' image.
+Each weights path has *CardiacSegmentation_python_dis*.py*, which performs LV segmentation with trained weights. The inputs are 'file path of the preprocessed image in step1', 'output file path', and 'directory path with weights'. <br/>
+The following code is an example of a command to output segmented LV mask file(*data\mask1_dis1.mha*) by inputting *data\sample1_dis1.mha* image.
 ```DOS.bat
 cmd /c python "%cd%\weights\displ1\CardiacSegmentation_python_dis1.py" "%cd%\data\sample1_dis1.mha" "%cd%\data\mask1_dis1.mha" "%cd%\weights\displ1"
 ```
