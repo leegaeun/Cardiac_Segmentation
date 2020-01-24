@@ -23,8 +23,6 @@ Preparation.exe는 12bit gray scale의 volume 영상을 8bit의 RGB로 이루어
 ```DOS.bat
 cmd /c Preparation.exe data\sample1.mha data\sample1_dis1.mha 1 150 200
 ```
-<br/>
-<br/>
 
 #### [Step2] Segmentation with trained weights
 각 weights경로에는 CardiacSegmentation_python_dis*.py가 있는데, trained weights로 LV segmentation을 수행한다. 입력값은 step1에서 전처리과정을 끝낸 영상경로, 출력파일경로, weights가 있는 디렉토리경로이다.
