@@ -24,12 +24,39 @@ The following code is an example of a command to output *data\sample1_dis1.mha* 
 cmd /c Preparation.exe data\sample1.mha data\sample1_dis1.mha 1 150 200
 ```
 
+<p>
+<img src="https://user-images.githubusercontent.com/17020746/76498479-50a7ff00-6480-11ea-9727-bddb4bf6ac4c.png" width="100%" />
+[Original 12-bit gray scale image]
+</p>
+<br/>
+<p>
+<img src="https://user-images.githubusercontent.com/17020746/76498663-abd9f180-6480-11ea-9ee2-d1649f1cf43a.png" width="100%" />
+[After windowing 150HU/200HU(level/width)]
+</p>
+<br/>
+
+
 #### [Step2] Segmentation with trained weights
 Each weights path has *CardiacSegmentation_python_dis\*.py*, which performs LV segmentation with trained weights. The inputs are 'file path of the preprocessed image in step1', 'output file path', and 'directory path with weights'. <br/>
 The following code is an example of a command to output segmented LV mask file(*data\mask1_dis1.mha*) by inputting *data\sample1_dis1.mha* image.
 ```DOS.bat
 cmd /c python "%cd%\weights\displ1\CardiacSegmentation_python_dis1.py" "%cd%\data\sample1_dis1.mha" "%cd%\data\mask1_dis1.mha" "%cd%\weights\displ1"
 ```
+<p>
+<img src="https://user-images.githubusercontent.com/17020746/76500446-e8f3b300-6483-11ea-9a46-57600b9694a2.png" width="100%" />
+[Segmentation Result : displacement = 0]
+</p>
+<br/>
+<p>
+<img src="https://user-images.githubusercontent.com/17020746/76500452-ea24e000-6483-11ea-9bac-5265f421c7d8.png" width="100%" />
+[Segmentation Result : displacement = 1]
+</p>
+<br/>
+<p>
+<img src="https://user-images.githubusercontent.com/17020746/76500457-eb560d00-6483-11ea-85c5-5f08df65c7af.png" width="100%" />
+[Segmentation Result : displacement = 2]
+</p>
+<br/>
 
 #### [Step3] Label fusion with Majority Voting
 *MajorityVoting.exe* combines the segmented masks output in [step2] into Majority Voting and outputs the final mask. <br/>
@@ -37,6 +64,10 @@ The following code is an example of outputting a *data\mask1_final.mha* file by 
 ```DOS.bat
 cmd /c MajorityVoting.exe data\mask1_dis0.mha data\mask1_dis1.mha data\mask1_dis2.mha data\mask1_final.mha
 ```
+<p>
+<img src="https://user-images.githubusercontent.com/17020746/76500459-ec873a00-6483-11ea-9ca1-19c6cdf45890.png" width="100%" />
+[Final Segmentation Result]
+</p>
 <br/>
 <br/>
 
