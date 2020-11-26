@@ -1,4 +1,4 @@
-# Cardiac_Segmentation
+# [Automated Segmentation of Left Ventricular Myocardium on Cardiac Computed Tomography Using Deep Learning](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7231613/pdf/kjr-21-660.pdf)
 Executables for segmenting left ventricle (LV) in cardiac CT images. (ver.1)<br/>
 
 
